@@ -116,7 +116,7 @@
     "docs:build": "gulp docs",
     "docs:watch": "gulp watch site --dev",
     "gulp": "gulp",
-    "preinstall": "npx npm-force-resolutions",
+    "preinstall": "npm install --package-lock-only --ignore-scripts && npx npm-force-resolutions",
     "test:ci": "gulp karma --config=config/karma-circleci.conf.js --reporters='dots,junit'",
     "test:fast": "gulp karma-fast",
     "test:full": "gulp karma",
