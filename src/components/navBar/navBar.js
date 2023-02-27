@@ -274,6 +274,11 @@ MdNavBarController.prototype._updateInkBarStyles = function(tab, newIndex) {
  * Updates ink bar to match current tab.
  */
 MdNavBarController.prototype.updateSelectedTabInkBar = function() {
+  var tabs = this._getTabs();
+
+  // this._getTabs can return null if nav-bar has not yet been initialized
+  if (!tabs) return;
+
   this._updateInkBarStyles(this._getSelectedTab());
 };
 
@@ -332,7 +337,11 @@ MdNavBarController.prototype.getFocusedTab = function() {
  * @private
  */
 MdNavBarController.prototype._findTab = function(fn, startIndex) {
+  var tabs = this._getTabs();
+  if (!tabs) return;
+
   var tabs = this._getTabs(), i;
+
   if (startIndex == null) {
     startIndex = 0;
   }
@@ -353,6 +362,7 @@ MdNavBarController.prototype._findTab = function(fn, startIndex) {
  */
 MdNavBarController.prototype._findTabReverse = function(fn, startIndex) {
   var tabs = this._getTabs();
+  if (!tabs) return;
   if (startIndex === undefined || startIndex === null) {
     startIndex = tabs.length - 1;
   }
@@ -459,6 +469,7 @@ MdNavBarController.prototype._focusPreviousTab = function(focusedTabIndex) {
 MdNavBarController.prototype.onKeydown = function(e) {
   var keyCodes = this._$mdConstant.KEY_CODE;
   var tabs = this._getTabs();
+  if (!tabs) return;
   var focusedTab = this.getFocusedTab();
   if (!focusedTab || !tabs) return;
 
